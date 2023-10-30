@@ -8,7 +8,13 @@ trigger_choice() {
 
     # Vérifiez le choix de l'utilisateur
     if [ $? -eq 0 ]; then
-      twitter_search "USERNAME" "$USER_INPUT"
+      if [ "$TWITTER_SEARCH" = true ]; then
+        echo "$TWITTER_SEARCH"
+        twitter_search "USERNAME" "$USER_INPUT"
+      fi
+      if [ "$FAMOUS_APPS" = true ]; then
+        python3 libs/python_scripts/global_search.py "$FILENAME"
+      fi
     else
         exit 0
     fi
